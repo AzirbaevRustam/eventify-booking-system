@@ -1,0 +1,45 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_events_table
+      author: postgres
+      changes:
+        - createTable:
+            tableName: events
+            columns:
+              - column:
+                  name: id
+                  type: bigserial
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: title
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: text
+                  constraints:
+                    nullable: true
+              - column:
+                  name: date_time
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: total_tickets
+                  type: integer
+                  constraints:
+                    nullable: false
+              - column:
+                  name: available_tickets
+                  type: integer
+                  constraints:
+                    nullable: false
+              - column:
+                  name: cover_url
+                  type: varchar(255)
+                  constraints:
+                    nullable: true

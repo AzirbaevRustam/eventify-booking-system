@@ -1,0 +1,41 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_notification_preferences_table
+      author: postgres
+      changes:
+        - createTable:
+            tableName: notification_preferences
+            columns:
+              - column:
+                  name: id
+                  type: bigserial
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: notify_new_events
+                  type: boolean
+                  constraints:
+                    nullable: false
+              - column:
+                  name: notify_upcoming
+                  type: boolean
+                  constraints:
+                    nullable: false
+              - column:
+                  name: notify_before_hours
+                  type: integer
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: notification_preferences
+            baseColumnNames: user_id
+            constraintName: fk_notification_preferences_user
+            referencedTableName: users
+            referencedColumnNames: id
